@@ -1,26 +1,46 @@
-html,
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*,*::before,*::after 
+{
+  box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  list-style-type: none;
+  scrollbar-color: transparent transparent;
+}
+*::-webkit-scrollbar {
+  display: none;
 }
 
 a {
   color: inherit;
   text-decoration: none;
 }
-
-* {
-  box-sizing: border-box;
+.hoverLink
+{
+  display: block;
+  position: relative;
+  padding-bottom: .1rem;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.hoverLink:hover.hoverLink::before
+{
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.hoverLink::before
+{
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 1px;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .3s;
 }
