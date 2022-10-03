@@ -22,7 +22,7 @@ export default function Header() {
       },{  
         scrollTrigger:{
           trigger:contentRef.current,
-          start:"200 top",  
+          start:"10 top",  
           toggleActions:'play none none reverse',
           onUpdate:(self)=>{
             
