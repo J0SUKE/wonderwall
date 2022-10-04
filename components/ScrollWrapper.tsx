@@ -18,7 +18,7 @@ export default function ScrollWrapper({children}:{children:React.ReactNode}) {
         smoother.current = ScrollSmoother.create({
             wrapper:scrollwrapper.current,
             content:scrollcontent.current,
-            smooth: 1,
+            smooth: 2,
             effects: true,
             normalizeScroll:true,
             smoothTouch:0.1,

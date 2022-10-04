@@ -17,7 +17,7 @@ export default function Layout({children}:{children:React.ReactNode}) {
         <Header/>
         <ScrollWrapper>
             <div 
-                className='relative z-[3] h-[200vh]' 
+                className='relative z-[3]' 
                 ref={contentRef  as React.MutableRefObject<HTMLDivElement>}
             >
                 {children}

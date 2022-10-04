@@ -63,6 +63,10 @@ a {
 {
   background: white;
 }
+.hoverBtn:hover path
+{
+  fill: white;
+}
 
 .hoverBtn__div
 {
@@ -92,3 +96,37 @@ a {
 {
   fill:black;
 }
+
+
+.hoverItem span::before
+{
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .6s;
+} 
+
+.hoverItem:hover span::before
+{
+  transform-origin: left;
+  transform: scaleX(1);
+} 
+
+.hoverItem:hover p
+{
+  color: black;
+}
+.hoverItem:hover div p
+{
+  opacity: 0;
+}
+
+.hoverItem:hover .more
+{
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.hoverItem:hover .hover-img
+{
+  height: 13vw;
+} 

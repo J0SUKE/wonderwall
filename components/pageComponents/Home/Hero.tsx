@@ -11,6 +11,7 @@ export default function Hero() {
     const sliderRef = useRef<HTMLDivElement>(null) as React.MutableRefObject<HTMLDivElement>;
     const heroTitleRef = useRef<HTMLHeadingElement>(null);
     const heroCtaButton = useRef<HTMLButtonElement>(null) as React.MutableRefObject<HTMLButtonElement>;
+    const indexIndicator = useRef<HTMLSpanElement>(null) as React.MutableRefObject<HTMLSpanElement>;
   
     return (
     <div className='h-[100vh] relative z-[1] overflow-hidden' data-speed='1'>
@@ -44,7 +45,7 @@ export default function Hero() {
                         </div>
                     </div>
                 </h1>
-                <SliderButtons style='pb-[3rem] hidden sm:flex gap-[1rem]' sliderIndex={sliderIndex} sliderRef={sliderRef} heroTitleRef={heroTitleRef} heroCtaButton={heroCtaButton}/>
+                <SliderButtons style='pb-[3rem] hidden sm:flex gap-[1rem]' sliderIndex={sliderIndex} sliderRef={sliderRef} heroTitleRef={heroTitleRef} heroCtaButton={heroCtaButton} indexIndicator={indexIndicator}/>
             </div>
             <HoverButton link='catalog' text='Go to catalog' icon='points' buttonRef={heroCtaButton}/>
             <div className='w-[100%] pb-[clamp(2rem,3vw,3vmax)] pt-[6rem] lg:pt-[clamp(3rem,6vw,6vmax)] flex justify-between items-center'>
@@ -65,17 +66,20 @@ export default function Hero() {
                 <p 
                     className='hidden sm:flex text-[white] text-[clamp(2rem,5vw,5vmax)] items-end gap-[clamp(1rem,1vw,1vmax)]'
                 >
-                    <span className='noto text-[clamp(2rem,4.7vw,4.7vmax)]'>1</span>
+                    <span 
+                        ref={indexIndicator}
+                        className='noto text-[clamp(2rem,4.7vw,4.7vmax)]'
+                    >1</span>
                 <span className='w-[clamp(1.5rem,3.5vw,3.5vmax)] h-[clamp(3px,.3vw,.3vmax)] bg-[white] block mb-[clamp(1rem,2vw,2vmax)]'></span>
                 4</p>
-                <SliderButtons style='flex gap-[1rem] sm:hidden sm:gap-[0rem]' sliderIndex={sliderIndex} sliderRef={sliderRef} heroTitleRef={heroTitleRef} heroCtaButton={heroCtaButton}/>
+                <SliderButtons style='flex gap-[1rem] sm:hidden sm:gap-[0rem]' sliderIndex={sliderIndex} sliderRef={sliderRef} heroTitleRef={heroTitleRef} heroCtaButton={heroCtaButton} indexIndicator={indexIndicator}/>
             </div>
         </div>
     </div>
   )
 }
 
-function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:{style?:string,sliderRef:React.MutableRefObject<HTMLDivElement>,sliderIndex:React.MutableRefObject<number>,heroTitleRef:React.RefObject<HTMLHeadingElement>,heroCtaButton:React.MutableRefObject<HTMLButtonElement>}) {
+function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton,indexIndicator}:{style?:string,sliderRef:React.MutableRefObject<HTMLDivElement>,sliderIndex:React.MutableRefObject<number>,heroTitleRef:React.RefObject<HTMLHeadingElement>,heroCtaButton:React.MutableRefObject<HTMLButtonElement>,indexIndicator:React.MutableRefObject<HTMLSpanElement>}) {
     
     const isTransitioning = useRef(false);
 
@@ -105,6 +109,8 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
         },'<')
 
         if(!heroTitleRef.current) return;
+        
+        indexIndicator.current.textContent = `${nextIndex+1}`;
         
         nextTimeline.fromTo(([...heroTitleRef.current.querySelectorAll('span')].reverse()),
         {
@@ -186,6 +192,8 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
         },'<')
 
         if(!heroTitleRef.current) return;
+
+        indexIndicator.current.textContent = `${prevIndex+1}`;
         
         prevTimeline.fromTo(([...heroTitleRef.current.querySelectorAll('span')].reverse()),
         {
