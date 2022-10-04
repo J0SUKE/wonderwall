@@ -91,7 +91,7 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
 
         const nextTimeline = gsap.timeline();
 
-        nextTimeline.fromTo(slides[sliderIndex.current],{scale:1,},{scale:1.1,duration:.8,})
+        nextTimeline.fromTo(slides[sliderIndex.current],{scale:1,},{scale:1.1,duration:1,})
 
         const nextIndex = sliderIndex.current==max-1 ? 0 : sliderIndex.current+1;     
         
@@ -102,16 +102,6 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
             scale:1,
             opacity:1,
             duration:1.2,
-            onComplete:()=>{                
-                
-                slides[sliderIndex.current].classList.remove('z-[2]','z-[3]');          
-                slides[nextIndex].classList.add('z-[2]');
-                slides[nextIndex].classList.remove('z-[3]');
-                isTransitioning.current = false;
-                if(sliderIndex.current==max-1)
-                sliderIndex.current=0;
-                else sliderIndex.current++;                
-            }
         },'<')
 
         if(!heroTitleRef.current) return;
@@ -149,8 +139,18 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
         {
             yPercent:0,
             opacity:1,            
-        },'-=0.3')
+            onComplete:()=>{                
                 
+                slides[sliderIndex.current].classList.remove('z-[2]','z-[3]');          
+                slides[nextIndex].classList.add('z-[2]');
+                slides[nextIndex].classList.remove('z-[3]');
+                isTransitioning.current = false;
+                if(sliderIndex.current==max-1)
+                sliderIndex.current=0;
+                else sliderIndex.current++;                
+            }
+        },'-=0.3')
+                        
 
     }
     
@@ -163,8 +163,10 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
         const slides = sliderRef.current.querySelectorAll('div');
         const max = slides.length;
         // index must go from 0 to max-1
+
+        const prevTimeline = gsap.timeline();
         
-        gsap.fromTo(slides[sliderIndex.current],{scale:1,},{scale:1.1,duration:.8,})
+        prevTimeline.fromTo(slides[sliderIndex.current],{scale:1,},{scale:1.1,duration:1,})
     
         const prevIndex = sliderIndex.current==0 ? max-1 : sliderIndex.current-1;     
         
@@ -172,7 +174,7 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
                 
         slides[prevIndex].classList.add('z-[3]');
 
-        gsap.fromTo(slides[prevIndex],
+        prevTimeline.fromTo(slides[prevIndex],
         {
             opacity:0,
             scale:1.1,
@@ -180,7 +182,44 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
         {
             scale:1,
             opacity:1,
-            duration:.8,
+            duration:1.2,
+        },'<')
+
+        if(!heroTitleRef.current) return;
+        
+        prevTimeline.fromTo(([...heroTitleRef.current.querySelectorAll('span')].reverse()),
+        {
+            yPercent:0,
+        },
+        {
+            yPercent:100,
+            stagger:.015,
+            duration:.4,
+            ease: "power2.in"
+        },'<')
+
+        prevTimeline.fromTo(heroCtaButton.current,
+        {
+            yPercent:0,
+            opacity:1,
+        },
+        {
+            yPercent:50,
+            opacity:0,
+        },'<')
+                
+        prevTimeline.to((heroTitleRef.current?.querySelectorAll('span') as NodeListOf<HTMLSpanElement>),
+        {
+            yPercent:0,
+            stagger:.015,
+            duration:.4,
+            //ease: "power4.in"
+        },'-=0.2')
+
+        prevTimeline.to(heroCtaButton.current,
+        {
+            yPercent:0,
+            opacity:1,            
             onComplete:()=>{                
                 
                 slides[sliderIndex.current].classList.remove('z-[2]','z-[3]');
@@ -193,7 +232,7 @@ function SliderButtons({style,sliderRef,sliderIndex,heroTitleRef,heroCtaButton}:
                 sliderIndex.current=max-1;
                 else sliderIndex.current--;                
             }
-        })
+        },'-=0.3')
         
     }
     
