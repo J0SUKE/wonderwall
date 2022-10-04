@@ -23,7 +23,7 @@ export default function HoverButton({link,text,icon}:{link:string,text:string,ic
                     :
                     null
                 }                
-                <div className='absolute w-[100%] h-[100%] bg-[#82969C] left-0 z-[1] hoverBtn__div'>
+                <div className='absolute w-[150%] rounded-t-[50%] h-[200%] bg-[#82969C] left-[-25%] z-[1] hoverBtn__div'>
 
                 </div>
             </button>

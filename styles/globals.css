@@ -67,7 +67,7 @@ a {
 .hoverBtn__div
 {
   transform: scaleY(0);
-  transition: transform .3s;
+  transition: transform .5s;
   transform-origin: top;
 }
 
@@ -75,4 +75,20 @@ a {
 {
   transform: scaleY(1);
   transform-origin: bottom;
+}
+
+.slider_btn div
+{
+  transform: scaleY(0);
+  transition: transform .3s;
+  transform-origin: top;
+}
+.slider_btn:hover div
+{
+  transform: scaleY(1);
+  transform-origin: bottom;
+}
+.slider_btn:hover polygon
+{
+  fill:black;
 }
