@@ -1,12 +1,15 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function HoverButton({link,text,icon}:{link:string,text:string,icon:'points'|'arrow'}) 
+export default function HoverButton({link,text,icon,buttonRef}:{link:string,text:string,icon:'points'|'arrow',buttonRef?:React.MutableRefObject<HTMLButtonElement>}) 
 {
   return (
     <Link href={link} passHref>
         <a>
-            <button className='bg-[white] px-[1.7rem] py-[1.5rem] flex items-center relative hoverBtn overflow-hidden'>
+            <button 
+                className='bg-[white] px-[1.7rem] py-[1.5rem] flex items-center relative hoverBtn overflow-hidden'
+                ref={buttonRef}
+            >
                 <p className='text-[.95rem] relative z-[2] transition-[color] duration-300'>{text}</p>
                 {
                     icon==='points'?
