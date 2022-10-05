@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import HoverButton from '../../HoverButton'
-import gsap from 'gsap/dist/gsap';
+import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import SecondSectionCaroussel from './SecondSectionCaroussel'
 
