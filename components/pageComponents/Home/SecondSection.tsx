@@ -17,24 +17,23 @@ export default function SecondSection() {
   useEffect(()=>{
     gsap.registerPlugin(ScrollTrigger);
 
-    if(!titleRef.current) return;
     
-    gsap.fromTo(titleRef.current.querySelectorAll('span')[0],{
+    gsap.fromTo((titleRef.current as HTMLHeadingElement).querySelectorAll('span')[0],{
       yPercent:100,
     },{
       yPercent:0,
       scrollTrigger:{
-        trigger:titleRef.current.querySelectorAll('span')[0],
+        trigger:(titleRef.current as HTMLHeadingElement).querySelectorAll('span')[0],
         start:'top '+window.innerHeight*0.9
       }
     })
     
-    gsap.fromTo(titleRef.current.querySelectorAll('span')[1],{
+    gsap.fromTo((titleRef.current as HTMLHeadingElement).querySelectorAll('span')[1],{
       yPercent:100,
     },{
       yPercent:0,
       scrollTrigger:{
-        trigger:titleRef.current.querySelectorAll('span')[1],
+        trigger:(titleRef.current as HTMLHeadingElement).querySelectorAll('span')[1],
         start:'top '+window.innerHeight*0.9
       }
     })

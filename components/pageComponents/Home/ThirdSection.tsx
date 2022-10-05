@@ -48,6 +48,7 @@ export default function ThirdSection() {
             layout={'fill'}
             objectFit={'cover'}
             objectPosition={'center'}
+            priority={true}
           />
         </div>
         <button 
