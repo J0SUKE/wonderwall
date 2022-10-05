@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Arrow from '../../Arrow';
@@ -22,6 +22,18 @@ export default function SecondSectionCaroussel(
     
     const carousselContainer = useRef<HTMLDivElement>(null)
     const lastButtonClicked = useRef<string>('') as React.MutableRefObject<string>;
+    const [mobile,setMobile] = useState(false);
+
+    useEffect(()=>{
+        
+        if(window.innerWidth<=768) setMobile(true);
+        else setMobile(false);
+        
+        window.addEventListener('resize',()=>{
+            if(window.innerWidth<=768) setMobile(true);
+            else setMobile(false);
+        })
+    },[])
   
     useEffect(()=>{
         carousselContainer.current?.querySelectorAll('.caroussel-item')[1]?.classList.remove('h-[60%]');
@@ -31,10 +43,10 @@ export default function SecondSectionCaroussel(
     return (
     <div className='mt-[2.3rem]' ref={carousselContainer}>
         <Carousel 
-            centerMode={true} 
+            centerMode={!mobile} 
             emulateTouch={true}
             infiniteLoop={true} 
-            centerSlidePercentage={83}
+            centerSlidePercentage={mobile ?100 : 83}
             showIndicators={false}
             showThumbs={false}
             showStatus={false}
@@ -110,10 +122,10 @@ export default function SecondSectionCaroussel(
 
 function CarousselItem({image,first}:{image:string,first?:boolean}) {
     return (
-        <div className='w-[100%] h-[42vw] pointer-events-none px-[2rem] overflow-hidden flex justify-center items-center'>
-            <div className={`w-[100%] h-[60%] overflow-hidden relative caroussel-item`}>
+        <div className='w-[100%] h-[60vw] md:h-[42vw] pointer-events-none px-[2vw] md:px-[2rem] overflow-hidden flex justify-center items-center'>
+            <div className={`w-[100%] h-[60%] overflow-hidden relative caroussel-item bg-[lightgray]`}>
                 
-                <div className='absolute top-[50%] translate-y-[-50%] left-0 w-[100%] h-[48.4vw] pointer-events-none' data-speed="0.8">
+                <div className='absolute top-[50%] translate-y-[-50%] left-0 w-[100%] h-[66vw] md:h-[48.4vw] pointer-events-none' data-speed="0.8">
                     <Image
                         src={image}
                         alt={''}
