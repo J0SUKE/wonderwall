@@ -96,6 +96,11 @@ a {
 {
   fill:black;
 }
+.slider_btn-w:hover polygon
+{
+  fill:white;
+}
+
 
 
 .hoverItem span::before
@@ -130,3 +135,7 @@ a {
 {
   height: 13vw;
 } 
+
+.bthBlackArrow:hover polygon{
+  fill: white;
+}

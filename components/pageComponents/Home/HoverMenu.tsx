@@ -30,13 +30,13 @@ export default function HoverMenu() {
   
   return (
     <div className='w-[65%] hidden md:block'>
-      <ul className='flex flex-col gap-[1.6rem]'>
+      <ul className='relative z-[2] flex flex-col gap-[1.6rem]'>
         <HoverMenuItem link={'/'} image={'/images/home_tapety.jpg'} value={'wallpapers'} index={'01'} number={'200+'}/>
         <HoverMenuItem link={'/'} image={'/images/home_farby.jpg'} value={'paints'} index={'02'} number={'500+'}/>
         <HoverMenuItem link={'/'} image={'/images/home_zywice.jpg'} value={'Glue / Resin'} index={'03'} number={'3'}/>
         <HoverMenuItem link={'/'} image={'/images/outlet_small.jpg'} value={'Outlet'} index={'04'} number={'3'}/>
       </ul>
-      <div className='inline-block mt-[3rem] border border-[#cdcdcd]' ref={buttonRef}>
+      <div className='inline-block relative z-[1] mt-[3rem] border border-[#cdcdcd]' ref={buttonRef}>
         <HoverButton link='/' text='Collection' icon='points'/>
       </div>
     </div>

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React, { useRef } from 'react'
 import HoverButton from '../../HoverButton'
 import gsap from 'gsap';
+import Arrow from '../../Arrow';
 
 export default function Hero() {
   
@@ -47,7 +48,7 @@ export default function Hero() {
                 </h1>
                 <SliderButtons style='pb-[3rem] hidden sm:flex gap-[1rem]' sliderIndex={sliderIndex} sliderRef={sliderRef} heroTitleRef={heroTitleRef} heroCtaButton={heroCtaButton} indexIndicator={indexIndicator}/>
             </div>
-            <HoverButton link='catalog' text='Go to catalog' icon='points' buttonRef={heroCtaButton}/>
+            <HoverButton link='catalog' text='Go to catalog' icon='points' buttonRef={heroCtaButton} style={'bg-[white]'}/>
             <div className='w-[100%] pb-[clamp(2rem,3vw,3vmax)] pt-[6rem] lg:pt-[clamp(3rem,6vw,6vmax)] flex justify-between items-center'>
                 <ul className='flex text-[white] gap-[2rem] text-[.9rem]'>
                     <a 
@@ -313,12 +314,3 @@ function SliderImages({sliderRef}:{sliderRef:React.MutableRefObject<HTMLDivEleme
     )   
 }
 
-
-function Arrow({color,style}:{color:string,style:string}) {
-    return (
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"  x="0px" y="0px" viewBox="0 0 476.213 476.213" className={`relative z-[2] h-[1rem] ${style}`}>
-        <polygon points="308.713,70.607 238.107,0 167.5,70.607 188.713,91.82 223.107,57.427 223.107,476.213 253.107,476.213 253.107,57.427 287.5,91.82 " fill={color} className='transition-[fill] duration-300'/><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
-    </svg>
-
-    )
-}

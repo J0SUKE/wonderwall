@@ -1,18 +1,19 @@
 import Link from 'next/link'
 import React from 'react'
+import Arrow from './Arrow'
 
-export default function HoverButton({link,text,icon,buttonRef}:{link:string,text:string,icon:'points'|'arrow',buttonRef?:React.MutableRefObject<HTMLButtonElement>}) 
+export default function HoverButton({link,text,icon,buttonRef,style,arrowColor,arrowStyle}:{link:string,text:string,icon:'points'|'arrow',buttonRef?:React.MutableRefObject<HTMLButtonElement>,style?:string,arrowColor?:string,arrowStyle?:string}) 
 {
   return (
     <Link href={link} passHref>
         <a>
             <button 
-                className='bg-[white] px-[1.7rem] py-[1.5rem] flex items-center relative hoverBtn overflow-hidden'
+                className={`px-[1.7rem] py-[1.5rem] flex items-center relative hoverBtn overflow-hidden ${style}`}
                 ref={buttonRef}
             >
                 <p className='text-[.95rem] relative z-[2] transition-[color] duration-300'>{text}</p>
                 {
-                    icon==='points'?
+                    icon==='points' ?
                     <div className='ml-[3rem] relative z-[2]'>
                         <div className='w-[10px] h-[5px] flex justify-between'>
                             <span className='h-[3.5px] w-[3.5px] rounded-[50%] bg-[black] transition-[background] duration-300'></span>
@@ -24,7 +25,10 @@ export default function HoverButton({link,text,icon,buttonRef}:{link:string,text
                         </div>
                     </div>
                     :
-                    null
+                    <Arrow 
+                        color={arrowColor==undefined? 'black' : arrowColor} 
+                        style={arrowStyle==undefined ? '' : arrowStyle}
+                    />
                 }                
                 <div className='absolute w-[150%] rounded-t-[50%] h-[200%] bg-[#82969C] left-[-25%] z-[1] hoverBtn__div'>
 
