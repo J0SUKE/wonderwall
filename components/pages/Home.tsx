@@ -5,6 +5,7 @@ import Hero from '../pageComponents/Home/Hero'
 import HoverMenu from '../pageComponents/Home/HoverMenu'
 import FirstSection from '../pageComponents/Home/FirstSection'
 import SecondSection from '../pageComponents/Home/SecondSection'
+import ThirdSection from '../pageComponents/Home/ThirdSection'
 
 export default function Home() {
   
@@ -15,6 +16,7 @@ export default function Home() {
       <div className='relative z-[2] bg-[white]'>
         <FirstSection/>
         <SecondSection/>
+        <ThirdSection/>
       </div>
     </>
   )
