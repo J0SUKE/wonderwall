@@ -98,6 +98,7 @@ function SliderItem({image,title,desc}:{image:string,title:string,desc:string})
                         alt=''
                         layout='fill'
                         objectFit='cover'
+                        priority={true}
                     />
                 </div>
             </div>

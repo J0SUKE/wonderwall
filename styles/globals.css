@@ -33,7 +33,7 @@ a {
 }
 .hoverLink
 {
-  display: block;
+  display:inline-block;
   position: relative;
   padding-bottom: .1rem;
 }
@@ -53,6 +53,11 @@ a {
   transform: scaleX(0);
   transform-origin: right;
   transition: transform .3s;
+}
+
+.hoverLink-b::before
+{
+  background: black;
 }
 
 .hoverBtn:hover p
