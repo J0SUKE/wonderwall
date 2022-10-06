@@ -67,6 +67,18 @@ a {
 {
   fill: white;
 }
+.hoverBtn-w:hover p
+{
+  color: #202020;
+}
+.hoverBtn-w:hover span
+{
+  background: #202020;
+}
+.hoverBtn-w:hover path
+{
+  fill: #202020;
+}
 
 .hoverBtn__div
 {

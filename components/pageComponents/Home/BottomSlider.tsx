@@ -1,18 +1,24 @@
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom';
 import Arrow from '../../Arrow';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import HoverButton from '../../HoverButton';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/dist/ScrollTrigger';
+import { log } from 'console';
+import { colorcontext } from '../../pages/Home';
 
-export default function BottomSlider() 
+export default function BottomSlider({BlueZone}:{BlueZone:React.RefObject<HTMLDivElement>}) 
 {  
     const ButtonsContainer = useRef<HTMLDivElement>(null);
     const SliderPrevButton = useRef<HTMLButtonElement>(null) as React.MutableRefObject<HTMLButtonElement>;
     const SliderNextButton = useRef<HTMLButtonElement>(null) as React.MutableRefObject<HTMLButtonElement>;
 
     const [mobile,setMobile] = useState(false);
+    const ColorContenxt = useContext(colorcontext);
+
 
     useEffect(()=>{
         
@@ -23,16 +29,19 @@ export default function BottomSlider()
             if(window.innerWidth<=768) setMobile(true);
             else setMobile(false);
         })
-    },[])
-  
+    },[])    
+
+    if(!ColorContenxt) return null;
+    const {white} = ColorContenxt;
+
     return (
     <div className='pb-[3rem]'>
-        <p className='pl-[5%] text-[#202020] opacity-[.5]'>Collection</p>
+        <p className={`pl-[5%] transition-[color] duration-300 ${white ? 'text-[#202020] opacity-[.5]' : 'text-[#dfdfdf] opacity-[1]'}`}>Collection</p>
         <div className='px-[5%] flex justify-between'>
-            <h2 className='text-[clamp(2.5rem,5vw,5vmax)] uppercase'>wallpapers</h2>
-            <div ref={ButtonsContainer} className='flex gap-[1rem]'>
-
-            </div>
+            <h2 
+                className={`text-[clamp(2.5rem,5vw,5vmax)] transition-[color] duration-300  uppercase ${white ? 'text-[black]' : 'text-[white]'}`}>wallpapers</h2>
+            
+            <div ref={ButtonsContainer} className='flex gap-[1rem]'></div>
         </div>
         <div className='mt-[1.3rem]'>
             <Carousel
@@ -61,7 +70,13 @@ export default function BottomSlider()
                 <SliderItem image='/images/Terre.jpg' title='Terre' desc='310 PLN per m'/>
             </Carousel>            
         </div>
-        <HoverButton link='/' text='See more' icon='points' style='ml-[5%] mt-[3rem] border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent]'/>
+        <HoverButton 
+            link='/' 
+            text='See more' 
+            icon='points' 
+            style={`ml-[5%] mt-[3rem] border ${white ? 'border-[#cdcdcd]' : 'border-[#cdcdcd65]'} transition-[border] duration-300 hover:border-[transparent]`}
+            white={white}
+        />
     </div>
   )
 }
@@ -69,6 +84,11 @@ export default function BottomSlider()
 
 function SliderItem({image,title,desc}:{image:string,title:string,desc:string}) 
 {
+    const ColorContenxt = useContext(colorcontext);
+    
+    if(!ColorContenxt) return null;
+    const {white} = ColorContenxt;
+    
     return(
         <div className='w-[70vw] md:w-[40vmax] pl-[5vmax] overflow-hidden'>
             <div className='w-[100%] h-[80vw] md:h-[45vw] overflow-hidden'>
@@ -81,13 +101,21 @@ function SliderItem({image,title,desc}:{image:string,title:string,desc:string})
                     />
                 </div>
             </div>
-            <h3 className='mt-[1.4rem] text-[1.5rem] text-left'>{title}</h3>
-            <p className='text-[.9rem] mt-[.4rem] text-[#202020] opacity-[.5] text-left'>{desc}</p>
+            <h3 className={`mt-[1.4rem] text-[1.5rem] text-left ${white ? 'text-[black]' : 'text-[white]'}`}>{title}</h3>
+            <p className={`text-[.9rem] mt-[.4rem] text-left 
+                ${white ? 'text-[#202020] opacity-[.5]' : 'text-[#dfdfdf] opacity-[1]'}`}
+            >{desc}</p>
         </div>
     )
 }
 
-function ButtonPrev({ButtonsContainer,SliderPrevButton,clickHandler}:{ButtonsContainer:React.RefObject<HTMLDivElement>,SliderPrevButton:React.MutableRefObject<HTMLButtonElement>,clickHandler:()=>void}) {
+function ButtonPrev({ButtonsContainer,SliderPrevButton,clickHandler}:{ButtonsContainer:React.RefObject<HTMLDivElement>,SliderPrevButton:React.MutableRefObject<HTMLButtonElement>,clickHandler:()=>void,}) {
+
+    const ColorContenxt = useContext(colorcontext);
+    
+    if(!ColorContenxt) return null;
+    const {white} = ColorContenxt;
+
     return (
         <>
             {
@@ -95,12 +123,12 @@ function ButtonPrev({ButtonsContainer,SliderPrevButton,clickHandler}:{ButtonsCon
                 ReactDOM.createPortal(
                     <>
                         <button 
-                                className='hidden md:flex h-[3.7rem] w-[3.7rem] rounded-[50%] border border-[#a9a9a96c] overflow-hidden slider_btn slider_btn-w justify-center items-center relative'
+                                className={`hidden md:flex h-[3.7rem] w-[3.7rem] transition-all duration-300 rounded-[50%] border ${white ? 'border-[#a9a9a96c] slider_btn slider_btn-w' : 'border-[#e5e5e570] slider_btn'} overflow-hidden  justify-center items-center relative`}
                                 ref={SliderPrevButton}
                                 onClick={clickHandler}
                             >
-                                <Arrow color='black' style={'rotate-[-90deg]'}/>
-                                <div className='absolute z-[1] h-[100%] w-[100%] bg-[#82969C] rounded-t-[50%]'></div>
+                                <Arrow color={white ? 'black':'white'} style={'rotate-[-90deg]'}/>
+                                <div className={`absolute z-[1] h-[100%] w-[100%] ${white ? "bg-[#82969C]" : "bg-[white]"} rounded-t-[50%]`}></div>
                         </button>
                     </>,
                     ButtonsContainer.current as HTMLDivElement
@@ -112,7 +140,13 @@ function ButtonPrev({ButtonsContainer,SliderPrevButton,clickHandler}:{ButtonsCon
     )   
 }
 
-function ButtonNext({ButtonsContainer,SliderNextButton,clickHandler}:{ButtonsContainer:React.RefObject<HTMLDivElement>,SliderNextButton:React.MutableRefObject<HTMLButtonElement>,clickHandler:()=>void}) {
+function ButtonNext({ButtonsContainer,SliderNextButton,clickHandler}:{ButtonsContainer:React.RefObject<HTMLDivElement>,SliderNextButton:React.MutableRefObject<HTMLButtonElement>,clickHandler:()=>void,}) {
+    
+    const ColorContenxt = useContext(colorcontext);
+    
+    if(!ColorContenxt) return null;
+    const {white} = ColorContenxt;
+    
     return (
         <>
             {
@@ -120,12 +154,12 @@ function ButtonNext({ButtonsContainer,SliderNextButton,clickHandler}:{ButtonsCon
                 ReactDOM.createPortal(
                     <>
                         <button 
-                                className='hidden md:flex h-[3.7rem] w-[3.7rem] rounded-[50%] border border-[#a9a9a96c] overflow-hidden slider_btn slider_btn-w justify-center items-center relative'
+                                className={`hidden md:flex h-[3.7rem] w-[3.7rem] transition-all duration-300 rounded-[50%] border ${white ? 'border-[#a9a9a96c] slider_btn slider_btn-w' : 'border-[#e5e5e570] slider_btn'} overflow-hidden  justify-center items-center relative`}
                                 ref={SliderNextButton}
                                 onClick={clickHandler}
                             >
-                                <Arrow color='black' style={'rotate-[90deg]'}/>
-                                <div className='absolute z-[1] h-[100%] w-[100%] bg-[#82969C] rounded-t-[50%]'></div>
+                                <Arrow color={white ? 'black':'white'} style={'rotate-[90deg]'}/>
+                                <div className={`absolute z-[1] h-[100%] w-[100%] ${white ? "bg-[#82969C]" : "bg-[white]"} rounded-t-[50%]`}></div>
                         </button>
                     </>,
                     ButtonsContainer.current as HTMLDivElement
