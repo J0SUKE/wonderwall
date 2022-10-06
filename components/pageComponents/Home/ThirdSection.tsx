@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useRef } from 'react'
 import Arrow from '../../Arrow';
 import HoverButton from '../../HoverButton';
+import InfoBlock from '../../InfoBlock';
 
 export default function ThirdSection() {
   
@@ -37,7 +38,7 @@ export default function ThirdSection() {
       <div className='block md:hidden pl-[3%] pb-[3rem]'>
           <h2  className='text-[2.6rem]'>Constructor</h2>
           <p className='my-[1.5rem] w-[80%] text-[.9rem] text-[#202020]'>Watch the movie and see how easy it is to adjust wallpaper for your individual needs!!</p>
-          <HoverButton link='/catalog' text='Collection' icon='points' style='border border-[#cdcdcd]'/>
+          <HoverButton link='/catalog' text='Collection' icon='points' style='border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent]'/>
       </div>
       
       <div className='relative w-[100%] md:w-[64%] h-[50vh] md:h-[90vh] bg-[#f4f1ee] overflow-hidden'>
@@ -73,34 +74,19 @@ export default function ThirdSection() {
         <div>
           <h2  className='text-[2.6rem]'>Constructor</h2>
           <p className='my-[1.5rem] text-[.9rem] text-[#202020]'>Watch the movie and see how easy it is to adjust wallpaper for your individual needs!!</p>
-          <HoverButton link='/catalog' text='Collection' icon='points' style='border border-[#cdcdcd]'/>
+          <HoverButton link='/catalog' text='Collection' icon='points' style='border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent]'/>
         </div>
-        <div className='bg-[rgb(244,244,244)] w-[100%]'>
-          <p 
-            className='text-[#202020] px-[1.5rem] pt-[1.5rem] text-[.9rem] italic pb-[2.5rem]'
-          >Wallpaper customized in terms of size or in any other way are not refundable.
-          </p>
-          <Link href={'/catalog/wallpapers'} passHref>
-            <a className='flex items-center gap-[.8rem] py-[1.5rem] px-[1.5rem] border-t border-[lightgray] hoverArrow'>
-              <p>More</p>
-              <Arrow color='black' style='rotate-[90deg] mt-[.15rem] transition-transform duration-500'/>
-            </a>
-          </Link>
-        </div>
+        <InfoBlock 
+          text='Wallpaper customized in terms of size or in any other way are not refundable.'
+          link='/catalog/wallpapers'
+        />
       </div>
       <div className='block md:hidden px-[3%]'>
-        <div className='bg-[rgb(244,244,244)] w-[100%] mt-[3rem]'>
-            <p 
-              className='text-[#202020] px-[1.5rem] pt-[1.5rem] text-[.9rem] italic pb-[2.5rem]'
-            >Wallpaper customized in terms of size or in any other way are not refundable.
-            </p>
-            <Link href={'/catalog/wallpapers'} passHref>
-              <a className='flex items-center gap-[.8rem] py-[1.5rem] px-[1.5rem] border-t border-[lightgray] hoverArrow'>
-                <p>More</p>
-                <Arrow color='black' style='rotate-[90deg] mt-[.15rem] transition-transform duration-500'/>
-              </a>
-            </Link>
-          </div>      
+        <InfoBlock 
+          text='Wallpaper customized in terms of size or in any other way are not refundable.'
+          link='/catalog/wallpapers'
+          style='mt-[3rem]'
+        />        
       </div>
     </div>
   )

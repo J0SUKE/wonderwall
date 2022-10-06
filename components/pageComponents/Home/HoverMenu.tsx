@@ -36,7 +36,7 @@ export default function HoverMenu() {
         <HoverMenuItem link={'/'} image={'/images/home_zywice.jpg'} value={'Glue / Resin'} index={'03'} number={'3'}/>
         <HoverMenuItem link={'/'} image={'/images/outlet_small.jpg'} value={'Outlet'} index={'04'} number={'3'}/>
       </ul>
-      <div className='inline-block relative z-[1] mt-[3rem] border border-[#cdcdcd]' ref={buttonRef}>
+      <div className='inline-block relative z-[1] mt-[3rem] border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent]' ref={buttonRef}>
         <HoverButton link='/' text='Collection' icon='points'/>
       </div>
     </div>
@@ -95,7 +95,7 @@ function HoverMenuItem({link,index,value,number,image}:{index:string,value:strin
       
       if(!itemRef.current || !hoverImg.current) return;
       
-      mouseposition.x = e.clientX - itemRef.current.offsetLeft - hoverImg.current.getBoundingClientRect().width/2;
+      mouseposition.x = e.clientX - itemRef.current.offsetLeft - hoverImg.current.getBoundingClientRect().width;
     })
 
 

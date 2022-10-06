@@ -81,7 +81,7 @@ export default function SecondSection() {
         <div className='pl-[2vw] md:pl-[11%] mt-[2rem]'>
           <HoverButton 
             link='/contact'
-            style='bg-[transparent] bthBlackArrow border border-[#cdcdcd]' 
+            style='bg-[transparent] bthBlackArrow border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent]' 
             text='See more' 
             icon='arrow' 
             arrowStyle='rotate-[90deg] ml-[2rem]'

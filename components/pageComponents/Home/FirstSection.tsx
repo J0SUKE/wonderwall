@@ -110,6 +110,7 @@ function Item({link,image,text}:{link:string,image:string,text:string}) {
                             alt=''
                             src={image}
                             layout={'fill'}
+                            objectFit={'cover'}
                             priority={true}
                         />
                     </div>

@@ -6,6 +6,7 @@ import HoverMenu from '../pageComponents/Home/HoverMenu'
 import FirstSection from '../pageComponents/Home/FirstSection'
 import SecondSection from '../pageComponents/Home/SecondSection'
 import ThirdSection from '../pageComponents/Home/ThirdSection'
+import FourthSection from '../pageComponents/Home/FourthSection'
 
 export default function Home() {
   
@@ -17,6 +18,7 @@ export default function Home() {
         <FirstSection/>
         <SecondSection/>
         <ThirdSection/>
+        <FourthSection/>
       </div>
     </>
   )
