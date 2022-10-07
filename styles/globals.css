@@ -161,3 +161,10 @@ a {
 {
   transform: translateX(100%) rotate(90deg);
 }
+
+.hoverItem-b:hover .hover-img-b{
+  height: 15rem;
+}
+.hoverItem-b:hover p{
+  opacity: .7;
+}

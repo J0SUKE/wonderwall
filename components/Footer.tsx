@@ -71,7 +71,9 @@ function ExternalLink({link,text}:{link:string,text:string})
 {
   return (
     <a 
+        
         href={link} 
+        target={'_blank'} rel="noreferrer"
         className="text-[darkgray] text-[.95rem] inline-block relative pb-[.1rem] before:content-[''] before:absolute before:bottom-0 before:w-[100%] before:h-[1px] before:bg-[darkgray] before:scale-x-0 before:origin-right before:transition-transform before:duration-300 hover:before:scale-[1] hover:before:origin-left">{text}
     </a>
   )  
