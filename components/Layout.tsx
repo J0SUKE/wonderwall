@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { globalrefscontext } from '../contenxt/globalRefs'
 import Footer from './Footer'
 import Header from './Header'
+import MenuLogic from './MenuLogic'
 import ScrollWrapper from './ScrollWrapper'
 
 export default function Layout({children}:{children:React.ReactNode}) {
@@ -10,11 +11,11 @@ export default function Layout({children}:{children:React.ReactNode}) {
     const Globalrefs = useContext(globalrefscontext);
 
     if(!Globalrefs) return null;
-    const {contentRef} = Globalrefs;
+    const {contentRef} = Globalrefs;    
   
     return (
     <div>
-        <Header/>
+        <MenuLogic/>
         <ScrollWrapper>
             <div 
                 className='relative z-[3]' 

@@ -16,20 +16,20 @@ export default function BottomSlider({BlueZone}:{BlueZone:React.RefObject<HTMLDi
     const SliderPrevButton = useRef<HTMLButtonElement>(null) as React.MutableRefObject<HTMLButtonElement>;
     const SliderNextButton = useRef<HTMLButtonElement>(null) as React.MutableRefObject<HTMLButtonElement>;
 
-    const [mobile,setMobile] = useState(false);
+    //const [mobile,setMobile] = useState(false);
     const ColorContenxt = useContext(colorcontext);
 
 
-    useEffect(()=>{
+    // useEffect(()=>{
         
-        if(window.innerWidth<=768) setMobile(true);
-        else setMobile(false);
+    //     if(window.innerWidth<=768) setMobile(true);
+    //     else setMobile(false);
         
-        window.addEventListener('resize',()=>{
-            if(window.innerWidth<=768) setMobile(true);
-            else setMobile(false);
-        })
-    },[])    
+    //     window.addEventListener('resize',()=>{
+    //         if(window.innerWidth<=768) setMobile(true);
+    //         else setMobile(false);
+    //     })
+    // },[])    
 
     if(!ColorContenxt) return null;
     const {white} = ColorContenxt;
@@ -43,10 +43,10 @@ export default function BottomSlider({BlueZone}:{BlueZone:React.RefObject<HTMLDi
             
             <div ref={ButtonsContainer} className='flex gap-[1rem]'></div>
         </div>
-        <div className='mt-[1.3rem]'>
+        <div className='hidden md:block mt-[1.3rem]'>
             <Carousel
                 centerMode={true}
-                centerSlidePercentage={mobile ? 70 : 39}
+                centerSlidePercentage={39}
                 showStatus={false}
                 showIndicators={false}
                 showThumbs={false}
@@ -70,6 +70,11 @@ export default function BottomSlider({BlueZone}:{BlueZone:React.RefObject<HTMLDi
                 <SliderItem image='/images/Terre.jpg' title='Terre' desc='310 PLN per m'/>
             </Carousel>            
         </div>
+        <MobileCaroussel 
+            ButtonsContainer={ButtonsContainer} 
+            SliderPrevButton={SliderPrevButton} 
+            SliderNextButton={SliderNextButton}
+        />
         <HoverButton 
             link='/' 
             text='See more' 
@@ -79,6 +84,40 @@ export default function BottomSlider({BlueZone}:{BlueZone:React.RefObject<HTMLDi
         />
     </div>
   )
+}
+
+
+
+function MobileCaroussel({ButtonsContainer,SliderPrevButton,SliderNextButton}:{ButtonsContainer:React.RefObject<HTMLDivElement>,SliderPrevButton:React.MutableRefObject<HTMLButtonElement>,SliderNextButton:React.MutableRefObject<HTMLButtonElement>}) {
+    return (
+        <div className='block md:hidden mt-[1.3rem]'>
+            <Carousel
+                centerMode={true}
+                centerSlidePercentage={79}
+                showStatus={false}
+                showIndicators={false}
+                showThumbs={false}
+                emulateTouch={true}
+                renderArrowPrev={(clickHandler: () => void) => <ButtonPrev
+                    ButtonsContainer={ButtonsContainer}
+                    SliderPrevButton={SliderPrevButton}
+                    clickHandler={clickHandler}
+                />}
+                renderArrowNext={(clickHandler: () => void) => <ButtonNext
+                    ButtonsContainer={ButtonsContainer}
+                    SliderNextButton={SliderNextButton}
+                    clickHandler={clickHandler}
+                />}
+            >
+                <SliderItem image='/images/Whirlpool.jpg' title='Whirlpool' desc='310 PLN per m'/>
+                <SliderItem image='/images/Ambre.jpg' title='Ambre' desc='310 PLN per m'/>
+                <SliderItem image='/images/Airon-1.jpg' title='Ambre' desc='310 PLN per m'/>
+                <SliderItem image='/images/Volare.jpg' title='Volare' desc='310 PLN per m'/>
+                <SliderItem image='/images/Fereldan.jpg' title='Fereldan' desc='310 PLN per m'/>
+                <SliderItem image='/images/Terre.jpg' title='Terre' desc='310 PLN per m'/>
+            </Carousel>            
+        </div>
+    )   
 }
 
 

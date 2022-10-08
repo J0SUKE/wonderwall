@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/hamburgers.css';
 import type { AppProps } from 'next/app'
 import GlobalRefs from '../contenxt/globalRefs'
 import ScrollContext from '../contenxt/scrollcontext'

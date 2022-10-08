@@ -58,11 +58,10 @@ export default function Home() {
 
   },[]);
 
-  //refresh the page on window resize
   useEffect(()=>{
     window.addEventListener('resize',debounce(()=>{
       router.reload();
-    },10))
+    },100))
   },[])
   
   return (

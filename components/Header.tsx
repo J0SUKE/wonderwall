@@ -5,13 +5,11 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { globalrefscontext } from '../contenxt/globalRefs';
 import Link from 'next/link';
-import { log } from 'console';
 
-export default function Header() {
+export default function Header({transparent,setTransparent,openMenu,closeMenu,HeaderRef,menuIsOpen}:{transparent:boolean,setTransparent:React.Dispatch<React.SetStateAction<boolean>>,openMenu:()=>void,closeMenu:()=>void,HeaderRef:React.MutableRefObject<HTMLDivElement>,menuIsOpen:React.MutableRefObject<boolean>}) {
     
-    const HeaderRef = useRef<HTMLDivElement>(null);
     const Globalrefs = useContext(globalrefscontext);
-    const [transparent,setTransparent] = useState(true);
+    const hamburger = useRef<HTMLDivElement>(null);
 
     useEffect(()=>{
             
@@ -58,7 +56,7 @@ export default function Header() {
       <div className='flex items-center justify-between'>
         <Logo white={transparent}/>
         <div className={`flex items-center ${transparent? "text-[white]":"text-black"}`}>
-          <nav className='mr-[4rem] flex gap-[2rem] text-[.9rem]'>
+          <nav className='hidden mr-[4rem] lg:flex gap-[2rem] text-[.9rem]'>
             <Link href={'/login'}>
               <a className='hoverLink'>
                   Login
@@ -71,10 +69,30 @@ export default function Header() {
             </Link>
           </nav>
           
-          <button className='flex flex-col justify-between h-[10px] w-[20px] bg-[transparent] outline-none'>
+          <button 
+            className='hidden lg:flex flex-col justify-between h-[10px] w-[20px] bg-[transparent] outline-none'
+            onClick={openMenu}
+          >
             <span className={`block rounded-[1px] h-[2px] w-[100%] ${transparent? "bg-[white]":"bg-black"}`}></span>
             <span className={`block rounded-[1px] h-[2px] w-[100%] ${transparent? "bg-[white]":"bg-black"}`}></span>
           </button>
+          <button
+            onClick={()=>{
+              hamburger.current?.classList.toggle('is-active');
+              if(!menuIsOpen.current) openMenu();
+              else closeMenu();
+            }}
+            className='flex lg:hidden justify-center items-center h-[2.5rem] w-[2.5rem] bg-[white] rounded-[50%] p-[1rem]'
+          >
+            <div 
+              className='hamburger hamburger--spin scale-[.5]'
+              ref={hamburger}
+            >
+              <span className="hamburger-box">
+                <span className="hamburger-inner"></span>
+              </span>
+            </div>
+          </button>          
         </div>
       </div>
     </header>;
