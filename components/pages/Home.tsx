@@ -58,11 +58,6 @@ export default function Home() {
 
   },[]);
 
-  useEffect(()=>{
-    window.addEventListener('resize',debounce(()=>{
-      router.reload();
-    },100))
-  },[])
   
   return (
     <colorcontext.Provider value={{white}}>
