@@ -11,6 +11,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 import { debounce } from 'lodash'
 import { useRouter } from 'next/router'
+import { log } from 'console'
 
 export const colorcontext = React.createContext<{white:boolean} | null>(null);
 

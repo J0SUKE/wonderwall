@@ -98,16 +98,7 @@ function MobileCaroussel({ButtonsContainer,SliderPrevButton,SliderNextButton}:{B
                 showIndicators={false}
                 showThumbs={false}
                 emulateTouch={true}
-                renderArrowPrev={(clickHandler: () => void) => <ButtonPrev
-                    ButtonsContainer={ButtonsContainer}
-                    SliderPrevButton={SliderPrevButton}
-                    clickHandler={clickHandler}
-                />}
-                renderArrowNext={(clickHandler: () => void) => <ButtonNext
-                    ButtonsContainer={ButtonsContainer}
-                    SliderNextButton={SliderNextButton}
-                    clickHandler={clickHandler}
-                />}
+                showArrows={false}
             >
                 <SliderItem image='/images/Whirlpool.jpg' title='Whirlpool' desc='310 PLN per m'/>
                 <SliderItem image='/images/Ambre.jpg' title='Ambre' desc='310 PLN per m'/>
