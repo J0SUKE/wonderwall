@@ -21,7 +21,7 @@ export default function ScrollWrapper({children}:{children:React.ReactNode}) {
             smooth: 2,
             effects: true,
             normalizeScroll:true,
-            smoothTouch:0.1,
+            //smoothTouch:0.1,
           });
 
           return ()=>smoother.current.kill();
