@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <GlobalRefs>
       <ScrollContext>
-        <PageLoader />
+        {/* <PageLoader /> */}
         <Component {...pageProps} />
       </ScrollContext>
     </GlobalRefs>

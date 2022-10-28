@@ -28,50 +28,66 @@ export default function Menu({
             <p className="text-[#cecece]">Catalog</p>
             <ul>
               <li>
-                <Link href={"/catalog/wallpapers"}>
-                  <a className="hoverLink text-[white] text-[2.5rem]">
-                    Wallpapers
-                  </a>
-                </Link>
+                <a
+                  className="hoverLink text-[white] text-[2.5rem]"
+                  href="https://wonderwall-studio.pl/kategoria-produktu/wallpapers/?lang=en"
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  Wallpapers
+                </a>
               </li>
               <li>
-                <Link href={"/catalog/paints"}>
-                  <a className="hoverLink text-[white] text-[2.5rem]">Paints</a>
-                </Link>
+                <a
+                  className="hoverLink text-[white] text-[2.5rem]"
+                  href="https://wonderwall-studio.pl/kategoria-produktu/paint/?lang=en"
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  Paints
+                </a>
               </li>
               <li>
-                <Link href={"/catalog/glue-resin"}>
-                  <a className="hoverLink text-[white] text-[2.5rem]">
-                    Glue / Resin
-                  </a>
-                </Link>
+                <a
+                  className="hoverLink text-[white] text-[2.5rem]"
+                  href="https://wonderwall-studio.pl/kategoria-produktu/glue-varnish/?lang=en"
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  Glue / Resin
+                </a>
               </li>
               <li>
-                <Link href={"/catalog/outlet"}>
-                  <a className="hoverLink text-[white] text-[2.5rem]">Outlet</a>
-                </Link>
+                <a
+                  className="hoverLink text-[white] text-[2.5rem]"
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                  href="https://wonderwall-studio.pl/kategoria-produktu/outlet/?lang=en"
+                >
+                  Outlet
+                </a>
               </li>
             </ul>
           </div>
           <div className="grid grid-cols-3 gap-[1rem] [&>ul>li]:mt-[.5rem] text-[.9rem]">
             <ul>
               <li>
-                <Link href="/about" passHref>
+                <Link href="/" passHref>
                   <a className="hoverLink text-[white]">About Us</a>
                 </Link>
               </li>
               <li>
-                <Link href="/parteners" passHref>
+                <Link href="/" passHref>
                   <a className="hoverLink text-[white]">To partners</a>
                 </Link>
               </li>
               <li>
-                <Link href="/contact" passHref>
+                <Link href="/" passHref>
                   <a className="hoverLink text-[white]">Contact</a>
                 </Link>
               </li>
               <li>
-                <Link href="/canvas" passHref>
+                <Link href="/" passHref>
                   <a className="hoverLink text-[white]">Promo Canvas</a>
                 </Link>
               </li>
@@ -151,17 +167,20 @@ export default function Menu({
             </p>
             <div className="flex items-center gap-[2.5rem]">
               <HoverButton
-                link="/register"
+                link="https://wonderwall-studio.pl/rejestracja/?lang=en"
                 text="Register"
                 icon="arrow"
                 style="border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent] bthBlackArrow"
                 arrowStyle="rotate-[90deg] ml-[1rem]"
               />
-              <Link href={"/login"}>
-                <a className="opacity-[0.4] hover:opacity-[1] transition-opacity duration-300">
-                  Login
-                </a>
-              </Link>
+              <a
+                className="opacity-[0.4] hover:opacity-[1] transition-opacity duration-300"
+                href={"https://wonderwall-studio.pl/logowanie/?lang=en"}
+                target={"_blank"}
+                rel="noopener noreferrer"
+              >
+                Login
+              </a>
             </div>
           </div>
         </div>
@@ -174,7 +193,7 @@ export default function Menu({
             </p>
             <div className="flex items-center gap-[2.5rem]">
               <HoverButton
-                link="/catalog/wallpapers"
+                link="https://wonderwall-studio.pl/kategoria-produktu/wallpapers/?lang=en"
                 text="Go to catalog"
                 icon="points"
                 style="border border-[#cdcdcd] transition-[border] duration-300 hover:border-[transparent] bthBlackArrow"
