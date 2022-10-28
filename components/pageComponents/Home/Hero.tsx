@@ -1,6 +1,6 @@
 import { log } from "console";
 import Image from "next/image";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import HoverButton from "../../HoverButton";
 import gsap from "gsap";
 import Arrow from "../../Arrow";
@@ -17,6 +17,39 @@ export default function Hero() {
   const indexIndicator = useRef<HTMLSpanElement>(
     null
   ) as React.MutableRefObject<HTMLSpanElement>;
+
+  useEffect(() => {
+    window.addEventListener("load", () => {
+      if (!heroTitleRef.current) return;
+
+      gsap.fromTo(
+        [...heroTitleRef.current.querySelectorAll("span")],
+        {
+          yPercent: 100,
+        },
+        {
+          yPercent: 0,
+          stagger: 0.015,
+          delay: 0.5,
+          duration: 0.4,
+        }
+      );
+
+      gsap.fromTo(
+        heroCtaButton.current,
+        {
+          yPercent: 50,
+          opacity: 0,
+        },
+        {
+          yPercent: 0,
+          opacity: 1,
+          delay: 1,
+          duration: 0.8,
+        }
+      );
+    });
+  });
 
   return (
     <div className="h-[100vh] relative z-[1] overflow-hidden" data-speed="1">

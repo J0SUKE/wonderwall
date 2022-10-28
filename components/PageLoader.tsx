@@ -15,6 +15,7 @@ export default function PageLoader() {
         },
         {
           height: "0vh",
+          duration: 1,
         }
       );
     });
