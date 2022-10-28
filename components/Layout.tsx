@@ -1,30 +1,29 @@
-import React, { useContext, useState } from 'react'
-import styled from 'styled-components'
-import { globalrefscontext } from '../contenxt/globalRefs'
-import Footer from './Footer'
-import Header from './Header'
-import MenuLogic from './MenuLogic'
-import ScrollWrapper from './ScrollWrapper'
+import React, { useContext, useEffect } from "react";
+import styled from "styled-components";
+import { globalrefscontext } from "../contenxt/globalRefs";
+import Footer from "./Footer";
+import { useRouter } from "next/router";
+import MenuLogic from "./MenuLogic";
+import ScrollWrapper from "./ScrollWrapper";
 
-export default function Layout({children}:{children:React.ReactNode}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
+  const Globalrefs = useContext(globalrefscontext);
 
-    const Globalrefs = useContext(globalrefscontext);
+  if (!Globalrefs) return null;
+  const { contentRef } = Globalrefs;
 
-    if(!Globalrefs) return null;
-    const {contentRef} = Globalrefs;    
-  
-    return (
+  return (
     <div>
-        <MenuLogic/>
-        <ScrollWrapper>
-            <div 
-                className='relative z-[3]' 
-                ref={contentRef  as React.MutableRefObject<HTMLDivElement>}
-            >
-                {children}
-            </div>
-            <Footer/>
-        </ScrollWrapper>
+      <MenuLogic />
+      <ScrollWrapper>
+        <div
+          className="relative z-[3]"
+          ref={contentRef as React.MutableRefObject<HTMLDivElement>}
+        >
+          {children}
+        </div>
+        <Footer />
+      </ScrollWrapper>
     </div>
-  )
+  );
 }
