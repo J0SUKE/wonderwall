@@ -7,7 +7,7 @@ export default function PageLoader() {
   useEffect(() => {
     if (!pageLoaderRef) return;
 
-    window.addEventListener("load", () => {
+    function animateLoader() {
       gsap.fromTo(
         pageLoaderRef.current,
         {
@@ -18,7 +18,13 @@ export default function PageLoader() {
           duration: 1,
         }
       );
-    });
+    }
+
+    if (process.env.NEXT_PUBLIC_ANALYTICS_ID === "production") {
+      window.addEventListener("load", animateLoader);
+    } else {
+      animateLoader();
+    }
   });
 
   return (
