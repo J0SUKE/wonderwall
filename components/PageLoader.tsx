@@ -20,7 +20,7 @@ export default function PageLoader() {
       );
     }
 
-    if (process.env.NEXT_PUBLIC_ANALYTICS_ID === "production") {
+    if (process.env.NEXT_PUBLIC_ENVIRONEMENT === "production") {
       window.addEventListener("load", animateLoader);
     } else {
       animateLoader();
